@@ -1,0 +1,31 @@
+shutdown_costmaps: false
+controller_frequency: 10.0
+planner_patience: 5.0
+controller_patience: 15.0
+conservative_reset_dist: 3.0
+planner_frequency: 0.2
+oscillation_timeout: 10.0
+oscillation_distance: 0.2
+
+recovery_behaviors:
+  - name: 'detect1'
+    type: 'detect_recovery/DetectRecovery'
+  - name: 'conservative_reset'
+    type: 'clear_costmap_recovery/ClearCostmapRecovery'
+  - name: 'detect2'
+    type: 'detect_recovery/DetectRecovery'
+  #- name: 'clearing_rotation'
+    #type: 'rotate_recovery/RotateRecovery'
+  #- name: 'super_conservative_reset'
+    #type: 'clear_costmap_recovery/ClearCostmapRecovery'
+
+#base_global_planner: global_planner/GlobalPlanner
+#base_global_planner: navfn/NavfnROS
+#base_global_planner: RRTstar_planner/RRTstarPlannerROS
+base_global_planner : RAstar_planner/RAstarPlannerROS
+
+
+#base_local_planner: base_local_planner/TrajectoryPlannerROS #路径跟随
+#base_local_planner: dwa_local_planner/DWAPlannerROS #dwa
+base_local_planner: simple_local_planner/PurePlannerROS #pure
+#base_local_planner: teb_local_planner/TebLocalPlannerROS #TEB

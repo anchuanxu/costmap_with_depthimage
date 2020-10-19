@@ -1,0 +1,20 @@
+<!--
+ Virtual sensor that uses semantic map information to "see" obstacles undetectable by robot sensors.
+-->
+<launch>
+  <arg name="virtual_wall" default="$(find yocs_virtual_sensor)/data/wall_list.yaml"/>
+  <node name="virtual_sensor" pkg="yocs_virtual_sensor" type="virtual_sensor_node">
+    <param name="range_min"    value="0.0"/>
+    <param name="range_max"    value="6.0"/>
+    <param name="frequency"    value="10.0"/>
+    <param name="hits_count"   value="3"/>
+    <param name="global_frame" value="/map"/>
+    <param name="sensor_frame" value="/base_link"/>
+  </node>
+
+  <node pkg="tf" type="static_transform_publisher" name="base_to_virtual" args="0 0 0 0 0 0 /base_footprint /virtual_laser 50"/>
+    <node name="wall_publisher" pkg="yocs_virtual_sensor" type="wall_publisher.py" required="true" >
+    <param name="~filename" value="$(arg virtual_wall)"/>
+  </node>
+
+</launch>

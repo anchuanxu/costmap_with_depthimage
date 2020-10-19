@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+
+<launch>
+
+    <!-- run depthimage_to_laserscan node -->
+    <!--tf转换-->
+    <node pkg="tf" type="static_transform_publisher" name="baselinkTocameralink"
+
+	    args="0.18 0.045 0.90 0 0.80 0 base_link camera_link 100" />
+
+	
+	    <node pkg="depthimage_to_laserscan" type="depthimage_to_laserscan" name="depthimage_to_laserscan">
+
+        <remap from="image" to="/camera/depth/image_rect_raw"/>
+        <remap from="camera_info" to="/camera/depth/camera_info"/>
+        <remap from="scan" to="/camera/scan"/>
+        <rosparam>
+            scan_height: 100
+            scan_time: 0.05
+            range_min: 0.40
+            range_max: 2.0
+            output_frame_id: camera_link
+        </rosparam>
+
+    </node>
+
+</launch>
