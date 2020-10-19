@@ -1,7 +1,5 @@
 # costmap
 
-服务机器人costmap方案设计及程序，在线文档地址：http://docs.droid.ac.cn/costmap/
-
 ### list
 
 - docs:包含程序使用说明文档；
@@ -16,4 +14,4 @@
 
   ### update
 
-  `20200716`
+  `20201019`
